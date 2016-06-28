@@ -1,23 +1,11 @@
-package coll;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-class pair{
-	public int value;
-	public int key;
-	
-	public pair(int givenV, int givenK){
-		value = givenV;
-		key = givenK;
-	}
-}
-
 public class collection{
 	public static void main(String[] args){
 		Random rand = new Random(); //random number generator for section 3
-		pair compareTemp = null;
+		Integer dupe = 0, i = 0;
 		
 		ArrayList<Integer> list1 = new ArrayList<Integer>();
 		ArrayList<Integer> list2 = new ArrayList<Integer>(); //create two empty lists. Lists used for the Collections.shuffle(List) method and for List.remove(index)
@@ -48,10 +36,12 @@ public class collection{
 		System.out.println("Collection 2: "+list2);
 		System.out.println("Size of collection 1: "+list1.size());
 		System.out.println("Size of collection 2: "+list2.size()); //print contents of each list and length of each list
+		System.out.println(""+list1);
+		System.out.println(""+list1);
 		
-		for(int i : list2){ //for each element in list2
-			if(!list1.contains(i)){ //if list1 does not contain it already,
-				list1.add(i); //add that element to list1
+		for(int n : list2){ //for each element in list2
+			if(!list1.contains(n)){ //if list1 does not contain it already,
+				list1.add(n); //add that element to list1
 			}
 		}
 		Collections.sort(list1); //sort list1
@@ -59,19 +49,28 @@ public class collection{
 		Collections.reverse(list1); //reverse order of list for printing
 		System.out.println("Both sets combined, ordered, middle removed, reverse order:");
 		System.out.println(""+list1);
+		System.out.println(""+list1);
+		System.out.println(""+list1);
 		
-		ArrayList<pair> table = new ArrayList<pair>(); //new arraylist, used for simple add
-		for(int i = 1; i <= 5; i++){ //for ints 1 through 5, inclusive
-			compareTemp = new pair(rand.nextInt(9),i); //generate a new value/key pair, with random value 0-9 inclusive and i as key
-			if(!table.contains(compareTemp)) table.add(compareTemp); //duplicate check: if list does not already contain the pair, add it
-			else System.out.println("Duplicate Value/Key pair, pair not added: " + compareTemp.value +", "+ compareTemp.key); //else it contains the pair, do not add it and print value to console
+		ArrayList<Integer> table = new ArrayList<Integer>(); //new set, used because arraylist indexes each entry, giving each value a key
+		for(i = 1; i <= 5; i++){ //for ints 1 through 5, inclusive
+			if(!table.contains(i)) {
+				table.add(i);
+				} //if set does not already contain the pair, add it
+			else System.out.println("Duplicate Value/Key pair, pair not added: " + i +", "+ i); //else it contains the pair, do not add it and print key and value to console
 		}
-		if(!table.contains(compareTemp)) table.add(compareTemp); //same duplicate check as above, using last generated V/K pair
-		else System.out.println("Duplicate Value/Key pair, pair not added: " + compareTemp.value +", "+ compareTemp.key);
+		dupe = 5; //set duplicate to last added value
+		if(!table.contains(dupe)) {
+			table.add(dupe);
+		} //same duplicate check as above, using duplicate V/K pair
+		else System.out.println("Duplicate Value/Key pair, pair not added: " + dupe +", "+ dupe);
+		
 		System.out.println("Final Value,Key pairs in collection:");
-		for(pair n : table){
-			System.out.println(n.value +", "+ n.key);
+		i = 1;
+		for(int n : table){ //for each K/V pair in set
+			System.out.println(i +", "+ n); //print each key and value
+			++i;
 		}
-		System.out.println("Final number of pairs in table: "+ table.size());
+		System.out.println("Final number of pairs in table: "+ table.size()); //print final number of entries in set
 	}
 }
